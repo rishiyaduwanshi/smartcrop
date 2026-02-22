@@ -1,10 +1,13 @@
 // prisma/seed.js
-// Run: node prisma/seed.js  (after prisma migrate dev)
+import { PrismaClient } from "@prisma/client";
+import { PrismaLibSql } from "@prisma/adapter-libsql";
+import bcrypt from "bcryptjs";
 
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcryptjs");
-
-const prisma = new PrismaClient();
+const adapter = new PrismaLibSql({
+    url: process.env.TURSO_DATABASE_URL,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+});
+const prisma = new PrismaClient({ adapter });
 
 const CROPS_LIST = [
     "Wheat", "Rice", "Maize", "Cotton", "Sugarcane", "Soybean",
