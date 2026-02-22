@@ -120,12 +120,20 @@ export default function Navbar() {
                                 )}
                             </div>
                         ) : (
-                            <Link
-                                href="/login"
-                                className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors shadow-sm"
-                            >
-                                Sign In
-                            </Link>
+                            <div className="flex items-center gap-2">
+                                <Link
+                                    href="/register"
+                                    className="px-4 py-2 border border-green-600 text-green-700 text-sm font-medium rounded-lg hover:bg-green-50 transition-colors"
+                                >
+                                    Sign Up
+                                </Link>
+                                <Link
+                                    href="/login"
+                                    className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors shadow-sm"
+                                >
+                                    Sign In
+                                </Link>
+                            </div>
                         )}
                     </div>
 
@@ -176,13 +184,22 @@ export default function Navbar() {
                                 </button>
                             </>
                         ) : (
-                            <Link
-                                href="/login"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-center px-4 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
-                            >
-                                Sign In
-                            </Link>
+                            <div className="flex flex-col gap-2">
+                                <Link
+                                    href="/register"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block text-center px-4 py-2.5 border border-green-600 text-green-700 text-sm font-medium rounded-lg hover:bg-green-50 transition-colors"
+                                >
+                                    Sign Up
+                                </Link>
+                                <Link
+                                    href="/login"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block text-center px-4 py-2.5 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                                >
+                                    Sign In
+                                </Link>
+                            </div>
                         )}
                     </div>
                 </div>
