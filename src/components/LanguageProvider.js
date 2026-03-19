@@ -83,7 +83,11 @@ function ensureGoogleTranslateContainer() {
     }
 
     if (!document.body) {
-        document.addEventListener("DOMContentLoaded", ensureGoogleTranslateContainer, { once: true });
+        document.addEventListener(
+            "DOMContentLoaded",
+            ensureGoogleTranslateContainer,
+            { once: true },
+        );
         return null;
     }
 
@@ -141,7 +145,7 @@ export function LanguageProvider({ children }) {
     const [isRouteTranslating, setIsRouteTranslating] = useState(false);
     const previousLanguageRef = useRef(DEFAULT_LANGUAGE);
     const pathname = usePathname();
-    const hasMountedPathRef = useRef(false);
+    const previousPathnameRef = useRef(null);
 
     useEffect(() => {
         const savedLanguage = window.localStorage.getItem(STORAGE_KEY);
@@ -227,13 +231,16 @@ export function LanguageProvider({ children }) {
     }, [isTranslatorReady, selectedLanguage]);
 
     useEffect(() => {
+        const currentPathname = pathname ?? "";
+        const previousPathname = previousPathnameRef.current;
+        previousPathnameRef.current = currentPathname;
+
         if (!isTranslatorReady || selectedLanguage === DEFAULT_LANGUAGE) {
             setIsRouteTranslating(false);
             return;
         }
 
-        if (!hasMountedPathRef.current) {
-            hasMountedPathRef.current = true;
+        if (previousPathname === null || previousPathname === currentPathname) {
             return;
         }
 
