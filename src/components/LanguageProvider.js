@@ -1,6 +1,7 @@
 "use client";
 
 import Cookies from "js-cookie";
+import { usePathname } from "next/navigation";
 import {
     createContext,
     useContext,
@@ -16,6 +17,7 @@ const DEFAULT_LANGUAGE = "en";
 const GOOGLE_SCRIPT_ID = "smartcrop-google-translate-script";
 const GOOGLE_INIT_CALLBACK = "smartcropGoogleTranslateInit";
 const GOOGLE_CONTAINER_ID = "google_translate_element";
+const ROUTE_TRANSLATION_MASK_MS = 700;
 
 const LANGUAGE_OPTIONS = [
     { code: "en", label: "English" },
@@ -136,7 +138,10 @@ const LanguageContext = createContext(null);
 export function LanguageProvider({ children }) {
     const [selectedLanguage, setSelectedLanguage] = useState(DEFAULT_LANGUAGE);
     const [isTranslatorReady, setIsTranslatorReady] = useState(false);
+    const [isRouteTranslating, setIsRouteTranslating] = useState(false);
     const previousLanguageRef = useRef(DEFAULT_LANGUAGE);
+    const pathname = usePathname();
+    const hasMountedPathRef = useRef(false);
 
     useEffect(() => {
         const savedLanguage = window.localStorage.getItem(STORAGE_KEY);
@@ -222,6 +227,38 @@ export function LanguageProvider({ children }) {
     }, [isTranslatorReady, selectedLanguage]);
 
     useEffect(() => {
+        if (!isTranslatorReady || selectedLanguage === DEFAULT_LANGUAGE) {
+            setIsRouteTranslating(false);
+            return;
+        }
+
+        if (!hasMountedPathRef.current) {
+            hasMountedPathRef.current = true;
+            return;
+        }
+
+        setIsRouteTranslating(true);
+        applyGoogleLanguage(selectedLanguage);
+        hideGoogleTranslateChrome();
+
+        const intervalId = window.setInterval(() => {
+            applyGoogleLanguage(selectedLanguage);
+            hideGoogleTranslateChrome();
+        }, 180);
+
+        const timeoutId = window.setTimeout(() => {
+            window.clearInterval(intervalId);
+            setIsRouteTranslating(false);
+        }, ROUTE_TRANSLATION_MASK_MS);
+
+        return () => {
+            window.clearInterval(intervalId);
+            window.clearTimeout(timeoutId);
+            setIsRouteTranslating(false);
+        };
+    }, [isTranslatorReady, pathname, selectedLanguage]);
+
+    useEffect(() => {
         window.localStorage.setItem(STORAGE_KEY, selectedLanguage);
     }, [selectedLanguage]);
 
@@ -235,12 +272,24 @@ export function LanguageProvider({ children }) {
             },
             languages: LANGUAGE_OPTIONS,
             isTranslatorReady,
+            isRouteTranslating,
         }),
-        [isTranslatorReady, selectedLanguage],
+        [isRouteTranslating, isTranslatorReady, selectedLanguage],
     );
 
     return (
         <LanguageContext.Provider value={value}>
+            {isRouteTranslating && (
+                <div className="translation-route-mask" aria-hidden="true">
+                    <div className="translation-route-mask__card">
+                        <div className="translation-route-mask__line translation-route-mask__line--lg" />
+                        <div className="translation-route-mask__line translation-route-mask__line--md" />
+                        <div className="translation-route-mask__line" />
+                        <div className="translation-route-mask__line" />
+                        <div className="translation-route-mask__line translation-route-mask__line--sm" />
+                    </div>
+                </div>
+            )}
             {children}
         </LanguageContext.Provider>
     );

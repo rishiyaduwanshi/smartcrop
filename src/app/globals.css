@@ -83,6 +83,7 @@ html {
 
 /* Pulse animation for live indicators */
 @keyframes pulse-green {
+
   0%,
   100% {
     opacity: 1;
@@ -106,41 +107,101 @@ html {
 }
 
 /* Hide the Google Translate iframe and its container */
-body > .skiptranslate, 
-body > .goog-tooltip,
-.VIpgJd-ZVi9od-ORHb-OEVmcd, /* A common class name for the banner */
+body>.skiptranslate,
+body>.goog-tooltip,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+/* A common class name for the banner */
 .goog-te-banner-frame.skiptranslate {
-    display: none !important;
+  display: none !important;
 }
 
 
 /* Loading spinner (gol gol icon) ko hatane ke liye */
-#goog-gt-tt, .goog-te-spinner-pos, .goog-te-spinner {
-    display: none !important;
+#goog-gt-tt,
+.goog-te-spinner-pos,
+.goog-te-spinner {
+  display: none !important;
 }
 
 /* Mouse hover par aane wale popup (tooltip) ko hatane ke liye */
-.goog-tooltip, .goog-tooltip:hover {
-    display: none !important;
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
 }
+
 .goog-text-highlight {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Agar spinner tab bhi dikhe toh ise try karein */
 .VIpgJd-ZVi9od-aZ66s-b9vBjn {
-    display: none !important;
+  display: none !important;
 }
 
 .hidden-translate-container {
-    position: fixed;
-    left: -9999px;
-    bottom: -9999px;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    pointer-events: none;
-    opacity: 0;
+  position: fixed;
+  left: -9999px;
+  bottom: -9999px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.translation-route-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(240, 253, 244, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.translation-route-mask__card {
+  width: min(92vw, 760px);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(22, 163, 74, 0.18);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 18px 45px -30px rgba(22, 101, 52, 0.5);
+}
+
+.translation-route-mask__line {
+  height: 14px;
+  border-radius: 999px;
+  margin-top: 12px;
+  background: linear-gradient(90deg,
+      rgba(134, 239, 172, 0.35) 0%,
+      rgba(34, 197, 94, 0.55) 50%,
+      rgba(134, 239, 172, 0.35) 100%);
+  background-size: 220% 100%;
+  animation: translation-mask-shimmer 1.15s linear infinite;
+}
+
+.translation-route-mask__line--lg {
+  margin-top: 0;
+  width: 82%;
+}
+
+.translation-route-mask__line--md {
+  width: 64%;
+}
+
+.translation-route-mask__line--sm {
+  width: 38%;
+}
+
+@keyframes translation-mask-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -20% 0;
+  }
 }
