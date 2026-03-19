@@ -1,40 +1,8 @@
-import Navbar from "@/components/Navbar";
+import { Leaf, Lightbulb } from "lucide-react";
+import AdvisoryInteractiveCards from "@/components/advisory/AdvisoryInteractiveCards";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { generateAdvisory, generateFarmer, generateSoilSensors } from "@/lib/faker-data";
-import {
-    CheckCircle2,
-    Leaf,
-    Droplets,
-    TrendingUp,
-    Lightbulb,
-    Clock,
-    BadgeIndianRupee,
-    FlaskConical,
-    Tag,
-} from "lucide-react";
-
-function ConfidenceBadge({ label, score }) {
-    const color =
-        label === "High"
-            ? "bg-green-100 text-green-700 border-green-200"
-            : label === "Medium"
-                ? "bg-amber-100 text-amber-700 border-amber-200"
-                : "bg-gray-100 text-gray-600 border-gray-200";
-    return (
-        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${color}`}>
-            {label} confidence ({score}%)
-        </span>
-    );
-}
-
-function PriorityDot({ priority }) {
-    const map = {
-        High: "bg-red-500",
-        Medium: "bg-amber-400",
-        Low: "bg-gray-300",
-    };
-    return <span className={`inline-block w-2 h-2 rounded-full ${map[priority]}`} />;
-}
 
 export default function AdvisoryPage() {
     const advisories = generateAdvisory();
@@ -48,7 +16,7 @@ export default function AdvisoryPage() {
     const seasons = ["Kharif", "Rabi", "Zaid"];
 
     return (
-        <div className="min-h-screen bg-[var(--background)]">
+        <div className="min-h-screen bg-background">
             <Navbar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -91,8 +59,8 @@ export default function AdvisoryPage() {
                         <span
                             key={s}
                             className={`px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors ${s === "All"
-                                    ? "bg-green-600 text-white"
-                                    : "bg-white border border-green-200 text-gray-600 hover:bg-green-50"
+                                ? "bg-green-600 text-white"
+                                : "bg-white border border-green-200 text-gray-600 hover:bg-green-50"
                                 }`}
                         >
                             {s}
@@ -100,104 +68,10 @@ export default function AdvisoryPage() {
                     ))}
                 </div>
 
-                {/* Advisory Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    {advisories.map((adv, i) => (
-                        <div
-                            key={i}
-                            className="bg-white rounded-2xl border border-green-100 shadow-sm p-6 card-hover"
-                        >
-                            {/* Card header */}
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">
-                                        🌾
-                                    </div>
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="font-bold text-gray-900 text-lg">{adv.crop}</h3>
-                                            <PriorityDot priority={adv.priority} />
-                                            <span className="text-xs text-gray-400">{adv.priority} priority</span>
-                                        </div>
-                                        <div className="flex items-center gap-2 mt-0.5">
-                                            <ConfidenceBadge label={adv.confidenceLabel} score={adv.confidence} />
-                                            <span className="text-xs text-gray-400">· {adv.season}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Confidence arc */}
-                                <div className="text-right">
-                                    <div className="text-2xl font-bold text-green-700">{adv.confidence}%</div>
-                                    <div className="text-[10px] text-gray-400">ML confidence</div>
-                                </div>
-                            </div>
-
-                            {/* Main recommendation */}
-                            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-4">
-                                <div className="flex items-start gap-2">
-                                    <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-                                    <p className="text-sm font-medium text-green-800">{adv.recommendedAction}</p>
-                                </div>
-                            </div>
-
-                            {/* Metrics grid */}
-                            <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <Droplets className="w-3.5 h-3.5 text-blue-500" />
-                                    <div>
-                                        <div className="text-[10px] text-gray-400">Water Need</div>
-                                        <div className="font-medium">{adv.waterRequirement}</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <FlaskConical className="w-3.5 h-3.5 text-purple-500" />
-                                    <div>
-                                        <div className="text-[10px] text-gray-400">Fertilizer Dose</div>
-                                        <div className="font-medium">{adv.fertilizerDose}</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <TrendingUp className="w-3.5 h-3.5 text-green-500" />
-                                    <div>
-                                        <div className="text-[10px] text-gray-400">Expected Yield</div>
-                                        <div className="font-medium">{adv.expectedYield}</div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <BadgeIndianRupee className="w-3.5 h-3.5 text-amber-500" />
-                                    <div>
-                                        <div className="text-[10px] text-gray-400">Est. Profit Margin</div>
-                                        <div className="font-medium">₹{adv.profitMargin.toLocaleString("en-IN")}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Data basis chips */}
-                            <div className="flex items-center gap-1.5 flex-wrap mb-3">
-                                <span className="text-[10px] text-gray-400 mr-1">Based on:</span>
-                                {adv.basis.map((b) => (
-                                    <span key={b} className="text-[10px] px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full">
-                                        {b}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {/* Tags */}
-                            <div className="flex items-center gap-1.5 flex-wrap">
-                                <Tag className="w-3 h-3 text-gray-400" />
-                                {adv.tags.map((tag) => (
-                                    <span key={tag} className="text-[10px] px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <AdvisoryInteractiveCards advisories={advisories} />
 
                 {/* Bottom CTA */}
-                <div className="mt-10 bg-gradient-to-r from-green-700 to-green-600 text-white rounded-2xl p-8 text-center">
+                <div className="mt-10 bg-linear-to-r from-green-700 to-green-600 text-white rounded-2xl p-8 text-center">
                     <Leaf className="w-8 h-8 mx-auto mb-3 text-green-300" />
                     <h3 className="text-xl font-bold mb-2">Need Expert Help?</h3>
                     <p className="text-green-200 text-sm mb-4">
