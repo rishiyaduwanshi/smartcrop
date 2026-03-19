@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/crops/[id] — single crop
+// GET /api/crops/[id] - single crop
 export async function GET(req, { params }) {
     const session = await auth();
     if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -16,7 +16,7 @@ export async function GET(req, { params }) {
     return NextResponse.json(crop);
 }
 
-// PATCH /api/crops/[id] — update crop
+// PATCH /api/crops/[id] - update crop
 export async function PATCH(req, { params }) {
     const session = await auth();
     if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -34,7 +34,7 @@ export async function PATCH(req, { params }) {
     return NextResponse.json(crop);
 }
 
-// DELETE /api/crops/[id] — delete crop
+// DELETE /api/crops/[id] - delete crop
 export async function DELETE(req, { params }) {
     const session = await auth();
     if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

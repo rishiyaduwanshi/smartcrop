@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/alerts — get all alerts for logged-in user
+// GET /api/alerts - get all alerts for logged-in user
 export async function GET() {
     const session = await auth();
     if (!session?.user?.id) {
@@ -17,7 +17,7 @@ export async function GET() {
     return NextResponse.json(alerts);
 }
 
-// PATCH /api/alerts — mark all as read
+// PATCH /api/alerts - mark all as read
 export async function PATCH() {
     const session = await auth();
     if (!session?.user?.id) {

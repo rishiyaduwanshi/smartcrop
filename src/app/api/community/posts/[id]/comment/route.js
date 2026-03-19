@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// POST /api/community/posts/[id]/comment — add a comment
+// POST /api/community/posts/[id]/comment - add a comment
 export async function POST(req, { params }) {
     const session = await auth();
     if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

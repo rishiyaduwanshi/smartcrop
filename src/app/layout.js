@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SmartCrop Advisor — AI-Driven Crop Advisory for Farmers",
+  title: "SmartCrop Advisor - AI-Driven Crop Advisory for Farmers",
   description:
     "Localized crop advisory and risk-management platform for small and marginal farmers. Get AI-powered crop recommendations, weather forecasts, pest risk alerts, and market prices.",
   keywords: "smart farming, crop advisory, precision agriculture, pest risk, soil monitoring, market prices",

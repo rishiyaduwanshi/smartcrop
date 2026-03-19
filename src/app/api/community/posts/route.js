@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/community/posts — all posts (public but need auth to see)
+// GET /api/community/posts - all posts (public but need auth to see)
 export async function GET(req) {
     const session = await auth();
     if (!session?.user?.id) {
@@ -45,7 +45,7 @@ export async function GET(req) {
     return NextResponse.json(parsed);
 }
 
-// POST /api/community/posts — create a post
+// POST /api/community/posts - create a post
 export async function POST(req) {
     const session = await auth();
     if (!session?.user?.id) {

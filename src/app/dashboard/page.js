@@ -1,35 +1,35 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { SoilHistoryChart } from "@/components/charts/SoilChart";
 import {
-    generateFarmer,
-    generateCurrentWeather,
-    generateSoilSensors,
-    generateCrops,
-    generateAlerts,
-    generatePlatformStats,
-    generateSoilHistory,
-} from "@/lib/faker-data";
-import {
-    Thermometer,
-    Droplets,
-    Wind,
-    Sun,
-    Bell,
     Activity,
-    Wifi,
-    WifiOff,
-    TrendingUp,
-    TrendingDown,
-    Minus,
     AlertTriangle,
+    BarChart3,
+    Bell,
     CheckCircle,
     Clock,
-    MapPin,
+    Droplets,
     Leaf,
-    BarChart3,
+    MapPin,
+    Minus,
+    Sun,
+    Thermometer,
+    TrendingDown,
+    TrendingUp,
+    Wifi,
+    WifiOff,
+    Wind,
 } from "lucide-react";
 import Link from "next/link";
+import { auth } from "@/auth";
+import { SoilHistoryChart } from "@/components/charts/SoilChart";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import {
+    generateAlerts,
+    generateCrops,
+    generateCurrentWeather,
+    generateSoilHistory,
+    generateSoilSensors,
+} from "@/lib/faker-data";
+import { prisma } from "@/lib/prisma";
 
 function SensorSignalBadge({ signal }) {
     if (signal === "Strong") return <span className="text-green-600 flex items-center gap-1 text-xs"><Wifi className="w-3 h-3" />Strong</span>;
@@ -73,20 +73,42 @@ function WeatherConditionIcon({ condition }) {
     return <span className="text-4xl">{icons[condition] || "🌤️"}</span>;
 }
 
-export default function DashboardPage() {
-    const farmer = generateFarmer();
+export default async function DashboardPage() {
+    const session = await auth();
     const weather = generateCurrentWeather();
     const sensors = generateSoilSensors();
     const crops = generateCrops();
     const alerts = generateAlerts();
-    const stats = generatePlatformStats();
     const soilHistory = generateSoilHistory(14);
+
+    const userProfile = session?.user?.id
+        ? await prisma.user.findUnique({
+            where: { id: session.user.id },
+            select: {
+                name: true,
+                village: true,
+                district: true,
+                state: true,
+                landHolding: true,
+                farmerType: true,
+            },
+        })
+        : null;
+
+    const farmer = {
+        name: userProfile?.name || session?.user?.name || "Farmer",
+        village: userProfile?.village || session?.user?.village || "Village not set",
+        district: userProfile?.district || "District not set",
+        state: userProfile?.state || session?.user?.state || "State not set",
+        landHolding: userProfile?.landHolding || "Land holding not set",
+        farmerType: userProfile?.farmerType || session?.user?.farmerType || "Farmer",
+    };
 
     const unreadAlerts = alerts.filter((a) => !a.isRead).length;
     const highAlerts = alerts.filter((a) => a.severity === "High").length;
 
     return (
-        <div className="min-h-screen bg-[var(--background)]">
+        <div className="min-h-screen bg-background">
             <Navbar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -183,7 +205,7 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
 
                     {/* Weather Widget */}
-                    <div className="lg:col-span-1 bg-gradient-to-br from-blue-600 to-blue-500 text-white rounded-2xl p-6 shadow-md">
+                    <div className="lg:col-span-1 bg-linear-to-br from-blue-600 to-blue-500 text-white rounded-2xl p-6 shadow-md">
                         <div className="flex justify-between items-start mb-4">
                             <div>
                                 <div className="text-xs text-blue-200 mb-1 font-medium uppercase tracking-wider">Current Weather</div>
@@ -328,7 +350,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <h2 className="font-bold text-gray-900">Soil Health Trends (14 Days)</h2>
-                            <p className="text-xs text-gray-400">Moisture · Nitrogen · pH — averaged across all sensors</p>
+                            <p className="text-xs text-gray-400">Moisture · Nitrogen · pH - averaged across all sensors</p>
                         </div>
                     </div>
                     <SoilHistoryChart data={soilHistory} />

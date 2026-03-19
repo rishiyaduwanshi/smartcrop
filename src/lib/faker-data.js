@@ -282,7 +282,7 @@ export function generateAlerts() {
             icon: "🐛",
             color: "red",
             messages: [
-                "Fall Armyworm spotted in Maize — spray chlorpyrifos immediately",
+                "Fall Armyworm spotted in Maize - spray chlorpyrifos immediately",
                 "Aphid infestation detected in Wheat field",
                 "Brown Plant Hopper alert for Rice crops",
             ],
@@ -292,9 +292,9 @@ export function generateAlerts() {
             icon: "🌧️",
             color: "blue",
             messages: [
-                "Heavy rainfall expected in next 24 hours — avoid spraying",
-                "Cyclone warning for coastal districts — secure crops",
-                "Cold wave approaching — protect nursery seedlings",
+                "Heavy rainfall expected in next 24 hours - avoid spraying",
+                "Cyclone warning for coastal districts - secure crops",
+                "Cold wave approaching - protect nursery seedlings",
             ],
         },
         {
@@ -303,8 +303,8 @@ export function generateAlerts() {
             color: "amber",
             messages: [
                 "Nitrogen deficiency detected in North Field sensor",
-                "Soil moisture critically low — irrigate immediately",
-                "pH imbalance in East Field — lime application recommended",
+                "Soil moisture critically low - irrigate immediately",
+                "pH imbalance in East Field - lime application recommended",
             ],
         },
         {
@@ -313,7 +313,7 @@ export function generateAlerts() {
             color: "green",
             messages: [
                 "Wheat price rose 8% at Amritsar mandi today",
-                "Onion prices at 5-year high — good time to sell",
+                "Onion prices at 5-year high - good time to sell",
                 "Cotton MSP increased by ₹250/qtl this season",
             ],
         },
@@ -458,13 +458,13 @@ export function generateAdvisory() {
         return {
             crop,
             recommendedAction: faker.helpers.arrayElement([
-                "Sow now — soil moisture and temperature are optimal",
+                "Sow now - soil moisture and temperature are optimal",
                 "Apply top dressing of 25 kg/acre urea within 5 days",
-                "Irrigate at 80% depletion — check soil sensors",
+                "Irrigate at 80% depletion - check soil sensors",
                 "Schedule harvest in 7–10 days for maximum yield",
                 "Apply potash fertilizer to boost grain filling",
                 "Foliar spray of micronutrients recommended this week",
-                "Reduce watering frequency — rains expected",
+                "Reduce watering frequency - rains expected",
                 "Thin seedlings to 15 cm spacing for better yield",
             ]),
             confidence,
@@ -505,37 +505,37 @@ export function generateCommunityPosts() {
             tags: ["Wheat", "Sowing", "Punjab"],
         },
         {
-            title: "Yellow leaves on Rice crop — what's wrong?",
+            title: "Yellow leaves on Rice crop - what's wrong?",
             body: "My rice plants are showing yellowing from the tips. Applied urea last week but no improvement. Soil test shows normal NPK. Help!",
             tags: ["Rice", "Nutrient Deficiency", "Help"],
         },
         {
-            title: "Drip irrigation setup for ₹15,000 per acre — is it worth it?",
+            title: "Drip irrigation setup for ₹15,000 per acre - is it worth it?",
             body: "Thinking of setting up drip irrigation. My district has 40% water level. Government subsidy available? Anyone with experience?",
             tags: ["Irrigation", "Subsidy", "Water Conservation"],
         },
         {
-            title: "Cotton crop price dropped — when to sell?",
+            title: "Cotton crop price dropped - when to sell?",
             body: "Current cotton price in my mandi is ₹6,200/qtl but MSP is ₹7,020. Should I wait or sell now? Stored for 4 weeks.",
             tags: ["Cotton", "Market Price", "Storage"],
         },
         {
-            title: "Intercropping Maize with Soybean — sharing results",
+            title: "Intercropping Maize with Soybean - sharing results",
             body: "Started intercropping 6 months ago. 40% increase in income from same land! Sharing detailed report. AMA.",
             tags: ["Intercropping", "Maize", "Soybean", "Success Story"],
         },
         {
-            title: "Free soil testing camps in Maharashtra — details inside",
+            title: "Free soil testing camps in Maharashtra - details inside",
             body: "Agriculture department running free soil testing from 15-25 Feb. Contact your local Krishi Vigyan Kendra. Sharing district list.",
             tags: ["Soil Testing", "Maharashtra", "Government Scheme"],
         },
         {
-            title: "Organic certification process — step by step guide",
+            title: "Organic certification process - step by step guide",
             body: "Got PGS-India certification last month. Documenting my 2-year journey. Happy to help others. DM for documents.",
             tags: ["Organic Farming", "Certification", "PGS-India"],
         },
         {
-            title: "Pest outbreak in Chilli crop — urgent help needed",
+            title: "Pest outbreak in Chilli crop - urgent help needed",
             body: "Yellow spots on leaves, small insects visible around 8 am. Spreading to neighboring rows. 1.5 acres affected. What spray?",
             tags: ["Chilli", "Pest", "Urgent"],
         },
@@ -596,7 +596,7 @@ export function generateTestimonials() {
             state: "Madhya Pradesh",
             crop: "Soybean",
             quote:
-                "The weather forecasts are incredibly accurate. I saved ₹8,000 by not spraying pesticides before rain — which the platform predicted correctly.",
+                "The weather forecasts are incredibly accurate. I saved ₹8,000 by not spraying pesticides before rain - which the platform predicted correctly.",
             increase: "28%",
         },
         {

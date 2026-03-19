@@ -1,16 +1,16 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { MarketPriceTrendChart } from "@/components/charts/MarketChart";
-import { generateMarketPrices, generatePriceTrend } from "@/lib/faker-data";
 import {
-    TrendingUp,
-    TrendingDown,
-    Minus,
     BadgeIndianRupee,
     BarChart3,
-    RefreshCw,
     Info,
+    Minus,
+    RefreshCw,
+    TrendingDown,
+    TrendingUp,
 } from "lucide-react";
+import { MarketPriceTrendChart } from "@/components/charts/MarketChart";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { generateMarketPrices, generatePriceTrend } from "@/lib/faker-data";
 
 function TrendIcon({ trend }) {
     if (trend === "up") return <TrendingUp className="w-4 h-4 text-green-500" />;
@@ -126,7 +126,7 @@ export default function MarketPage() {
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <h2 className="font-bold text-gray-900">Wheat Price Trend (6 Months)</h2>
-                            <p className="text-xs text-gray-400">Modal price vs MSP — Amritsar Mandi</p>
+                            <p className="text-xs text-gray-400">Modal price vs MSP - Amritsar Mandi</p>
                         </div>
                         <div className="flex items-center gap-3 text-xs">
                             <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-green-500 inline-block" /> Market Price</span>
@@ -139,7 +139,7 @@ export default function MarketPage() {
                 {/* Price Table */}
                 <div className="bg-white rounded-2xl border border-green-100 shadow-sm overflow-hidden">
                     <div className="px-6 py-4 border-b border-green-50 flex items-center justify-between">
-                        <h2 className="font-bold text-gray-900">All Crops — Today's Prices</h2>
+                        <h2 className="font-bold text-gray-900">All Crops - Today's Prices</h2>
                         <span className="text-xs text-gray-400">Prices in ₹ per quintal (100 kg)</span>
                     </div>
 

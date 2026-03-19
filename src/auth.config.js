@@ -1,4 +1,4 @@
-// Edge-compatible auth config — NO Prisma / bcrypt imports here.
+// Edge-compatible auth config - NO Prisma / bcrypt imports here.
 // Used by proxy.js (Edge Runtime) for route protection via JWT verification.
 
 export const authConfig = {

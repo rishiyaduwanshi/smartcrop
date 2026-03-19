@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/soil-readings — latest readings for logged-in user
+// GET /api/soil-readings - latest readings for logged-in user
 export async function GET() {
     const session = await auth();
     if (!session?.user?.id) {
@@ -20,7 +20,7 @@ export async function GET() {
     return NextResponse.json(readings);
 }
 
-// POST /api/soil-readings — log a new reading
+// POST /api/soil-readings - log a new reading
 export async function POST(req) {
     const session = await auth();
     if (!session?.user?.id) {

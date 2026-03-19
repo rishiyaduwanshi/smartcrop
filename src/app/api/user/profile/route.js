@@ -34,7 +34,7 @@ export async function GET() {
     return NextResponse.json(user);
 }
 
-// PATCH /api/user/profile — update profile
+// PATCH /api/user/profile - update profile
 export async function PATCH(req) {
     const session = await auth();
     if (!session?.user?.id) {

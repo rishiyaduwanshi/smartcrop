@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/crops — get logged-in user's crops
+// GET /api/crops - get logged-in user's crops
 export async function GET() {
     const session = await auth();
     if (!session?.user?.id) {
@@ -17,7 +17,7 @@ export async function GET() {
     return NextResponse.json(crops);
 }
 
-// POST /api/crops — add a new crop
+// POST /api/crops - add a new crop
 export async function POST(req) {
     const session = await auth();
     if (!session?.user?.id) {

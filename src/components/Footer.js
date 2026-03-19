@@ -1,5 +1,5 @@
+import { Facebook, Leaf, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
-import { Leaf, Phone, Mail, MapPin, Twitter, Youtube, Facebook } from "lucide-react";
 
 const footerLinks = {
     Platform: [
@@ -99,7 +99,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="border-t border-green-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-green-400 text-xs">
-                        © 2025 SmartCrop Advisor — Group KC874 Capstone Project. Built for SIH Agriculture & Rural Development.
+                        © 2025 SmartCrop Advisor - Group KC874 Capstone Project. Built for SIH Agriculture & Rural Development.
                     </p>
                     <div className="flex items-center gap-3">
                         <span className="text-green-500 text-xs">Follow us:</span>

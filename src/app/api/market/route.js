@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// GET /api/market — get all market prices
+// GET /api/market - get all market prices
 export async function GET() {
     const session = await auth();
     if (!session?.user?.id) {

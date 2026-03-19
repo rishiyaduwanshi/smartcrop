@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-// PATCH /api/alerts/[id] — mark single alert as read
+// PATCH /api/alerts/[id] - mark single alert as read
 export async function PATCH(req, { params }) {
     const session = await auth();
     if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

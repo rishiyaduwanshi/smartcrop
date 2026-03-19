@@ -1,27 +1,27 @@
+import {
+  ArrowRight,
+  BarChart3,
+  Bug,
+  CheckCircle2,
+  CloudSun,
+  Cpu,
+  Leaf,
+  MessageSquare,
+  ShieldCheck,
+  Smartphone,
+  Star,
+  TrendingUp,
+  Users,
+  Wifi,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import {
   generatePlatformStats,
   generateTestimonials,
 } from "@/lib/faker-data";
-import {
-  Leaf,
-  CloudSun,
-  Bug,
-  TrendingUp,
-  Cpu,
-  Users,
-  MessageSquare,
-  ShieldCheck,
-  Smartphone,
-  Wifi,
-  BarChart3,
-  ArrowRight,
-  Star,
-  CheckCircle2,
-  Zap,
-} from "lucide-react";
 
 const features = [
   {
@@ -207,7 +207,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right — live stats card */}
+            {/* Right - live stats card */}
             <div className="hidden lg:block">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6 space-y-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -268,7 +268,7 @@ export default function LandingPage() {
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             A complete farming intelligence platform designed specifically for the realities of small
-            and marginal farmers in India — low connectivity, multiple languages, diverse crops.
+            and marginal farmers in India - low connectivity, multiple languages, diverse crops.
           </p>
         </div>
 

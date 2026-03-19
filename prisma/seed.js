@@ -1,6 +1,7 @@
 // prisma/seed.js
-import { PrismaClient } from "@prisma/client";
+
 import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const adapter = new PrismaLibSql({
@@ -78,14 +79,14 @@ const demoUsers = [
 ];
 
 const alertMessages = [
-    { type: "Pest", icon: "🐛", color: "red", severity: "High", message: "Fall Armyworm spotted in North Field — apply Chlorpyrifos 20 EC @ 2ml/L immediately" },
-    { type: "Weather", icon: "🌧️", color: "blue", severity: "Medium", message: "Heavy rainfall expected tomorrow — avoid pesticide spraying for next 48 hours" },
-    { type: "Soil", icon: "🌱", color: "amber", severity: "Medium", message: "Nitrogen deficiency detected in North Field sensor — apply urea top dressing" },
-    { type: "Market", icon: "📈", color: "green", severity: "Low", message: "Wheat price rose 8% at Amritsar mandi today — good opportunity to sell stored stock" },
-    { type: "Advisory", icon: "💡", color: "purple", severity: "Low", message: "Optimal sowing window for Rabi crops starts in 10 days — prepare your fields now" },
-    { type: "Pest", icon: "🐛", color: "red", severity: "High", message: "Aphid infestation detected in Wheat field — use Imidacloprid 17.8 SL @ 0.5ml/L" },
-    { type: "Weather", icon: "⚠️", color: "amber", severity: "High", message: "Cold wave alert for next 3 days — protect nursery seedlings with mulching" },
-    { type: "Advisory", icon: "💡", color: "purple", severity: "Medium", message: "Schedule irrigation for your Sugarcane crop — soil moisture critically low" },
+    { type: "Pest", icon: "🐛", color: "red", severity: "High", message: "Fall Armyworm spotted in North Field - apply Chlorpyrifos 20 EC @ 2ml/L immediately" },
+    { type: "Weather", icon: "🌧️", color: "blue", severity: "Medium", message: "Heavy rainfall expected tomorrow - avoid pesticide spraying for next 48 hours" },
+    { type: "Soil", icon: "🌱", color: "amber", severity: "Medium", message: "Nitrogen deficiency detected in North Field sensor - apply urea top dressing" },
+    { type: "Market", icon: "📈", color: "green", severity: "Low", message: "Wheat price rose 8% at Amritsar mandi today - good opportunity to sell stored stock" },
+    { type: "Advisory", icon: "💡", color: "purple", severity: "Low", message: "Optimal sowing window for Rabi crops starts in 10 days - prepare your fields now" },
+    { type: "Pest", icon: "🐛", color: "red", severity: "High", message: "Aphid infestation detected in Wheat field - use Imidacloprid 17.8 SL @ 0.5ml/L" },
+    { type: "Weather", icon: "⚠️", color: "amber", severity: "High", message: "Cold wave alert for next 3 days - protect nursery seedlings with mulching" },
+    { type: "Advisory", icon: "💡", color: "purple", severity: "Medium", message: "Schedule irrigation for your Sugarcane crop - soil moisture critically low" },
 ];
 
 const communityPostsData = [
@@ -95,18 +96,18 @@ const communityPostsData = [
         tags: JSON.stringify(["Wheat", "Sowing", "Punjab"]),
     },
     {
-        title: "Yellow leaves on Rice crop after urea application — help!",
+        title: "Yellow leaves on Rice crop after urea application - help!",
         body: "My rice plants are showing yellowing from the leaf tips after I applied urea last week. Soil test shows normal NPK. Could it be zinc deficiency or urea burn? Photos in comments.",
         tags: JSON.stringify(["Rice", "Nutrient Deficiency", "Help"]),
     },
     {
-        title: "Drip irrigation ROI after 3 years — my experience",
+        title: "Drip irrigation ROI after 3 years - my experience",
         body: "Set up drip irrigation 3 years ago at ₹18,000/acre with 85% government subsidy. Water savings: 40%. Yield increase: 28%. Payback period was just 14 months. Happy to share details!",
         tags: JSON.stringify(["Irrigation", "Subsidy", "Success Story"]),
     },
     {
-        title: "Cotton price vs MSP debate — when to sell?",
-        body: "Current cotton price in my mandi is ₹6,200/qtl but MSP is ₹7,020. I've stored for 4 weeks. Warehouse charges eating up margin. What do you all suggest — wait or sell?",
+        title: "Cotton price vs MSP debate - when to sell?",
+        body: "Current cotton price in my mandi is ₹6,200/qtl but MSP is ₹7,020. I've stored for 4 weeks. Warehouse charges eating up margin. What do you all suggest - wait or sell?",
         tags: JSON.stringify(["Cotton", "Market Price", "MSP"]),
     },
     {
@@ -274,7 +275,7 @@ async function main() {
             });
         }
 
-        console.log(`✓ Created user: ${user.email} (${user.name}) — ${userCrops.length} crops, 4 sensors, 6 alerts`);
+        console.log(`✓ Created user: ${user.email} (${user.name}) - ${userCrops.length} crops, 4 sensors, 6 alerts`);
     }
 
     console.log("\n🎉 Seeding complete!\n");

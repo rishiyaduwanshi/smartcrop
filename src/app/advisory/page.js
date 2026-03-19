@@ -1,13 +1,25 @@
 import { Leaf, Lightbulb } from "lucide-react";
+import { auth } from "@/auth";
 import AdvisoryInteractiveCards from "@/components/advisory/AdvisoryInteractiveCards";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { generateAdvisory, generateFarmer, generateSoilSensors } from "@/lib/faker-data";
+import { generateAdvisory, generateSoilSensors } from "@/lib/faker-data";
+import { prisma } from "@/lib/prisma";
 
-export default function AdvisoryPage() {
+export default async function AdvisoryPage() {
+    const session = await auth();
     const advisories = generateAdvisory();
-    const farmer = generateFarmer();
     const sensors = generateSoilSensors();
+
+    const userProfile = session?.user?.id
+        ? await prisma.user.findUnique({
+            where: { id: session.user.id },
+            select: { name: true, soilType: true },
+        })
+        : null;
+
+    const farmerName = userProfile?.name || session?.user?.name || "Farmer";
+    const soilType = userProfile?.soilType || "Not set";
 
     const avgMoisture = (sensors.reduce((s, x) => s + x.moisture, 0) / sensors.length).toFixed(1);
     const avgPH = (sensors.reduce((s, x) => s + x.ph, 0) / sensors.length).toFixed(1);
@@ -28,7 +40,7 @@ export default function AdvisoryPage() {
                         <h1 className="text-2xl font-bold text-gray-900">AI Crop Advisory</h1>
                     </div>
                     <p className="text-gray-500">
-                        Personalized recommendations for {farmer.name} based on your soil sensors, weather data,
+                        Personalized recommendations for {farmerName} based on your soil sensors, weather data,
                         and historical yield patterns.
                     </p>
                 </div>
@@ -49,7 +61,7 @@ export default function AdvisoryPage() {
                     </div>
                     <div>
                         <div className="text-green-300 text-xs mb-1">Soil Type</div>
-                        <div className="text-xl font-bold">{farmer.soilType}</div>
+                        <div className="text-xl font-bold">{soilType}</div>
                     </div>
                 </div>
 

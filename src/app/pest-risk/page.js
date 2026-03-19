@@ -56,7 +56,7 @@ export default function PestRiskPage() {
                     <div>
                         <div className="font-semibold text-blue-800">Current Weather Influence on Pest Risk</div>
                         <div className="text-sm text-blue-600">
-                            Temp: {weather.temp}°C · Humidity: {weather.humidity}% · {weather.condition} —{" "}
+                            Temp: {weather.temp}°C · Humidity: {weather.humidity}% · {weather.condition} -{" "}
                             {weather.humidity > 70
                                 ? "⚠️ High humidity increases fungal disease risk. Monitor crops closely."
                                 : "Normal conditions. Continue regular scouting."}
@@ -67,7 +67,7 @@ export default function PestRiskPage() {
                 {/* Risk Trend Chart */}
                 <div className="bg-white rounded-2xl border border-green-100 p-6 shadow-sm mb-8">
                     <h2 className="font-bold text-gray-900 mb-1">Pest Risk Trend (8 Weeks)</h2>
-                    <p className="text-xs text-gray-400 mb-4">Historical ML risk scores — higher = greater outbreak probability</p>
+                    <p className="text-xs text-gray-400 mb-4">Historical ML risk scores - higher = greater outbreak probability</p>
                     <PestRiskHistoryChart data={history} />
                 </div>
 
@@ -83,7 +83,7 @@ export default function PestRiskPage() {
                         {[
                             "Scout fields every 3 days during Kharif season",
                             "Use yellow sticky traps for whitefly and aphid monitoring",
-                            "Maintain field hygiene — remove crop residues promptly",
+                            "Maintain field hygiene - remove crop residues promptly",
                             "Follow recommended pesticide dosage; never over-apply",
                             "Use biological control agents (Trichogramma, Bt) first",
                             "Avoid spraying in rain or strong wind conditions",
